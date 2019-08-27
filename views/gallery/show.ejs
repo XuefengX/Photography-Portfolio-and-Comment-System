@@ -1,0 +1,53 @@
+<% include ../partials/header %>
+<div class="container show">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead"><strong>Photo Info</strong></p>
+            <div class="list-group list-group-flush position-static">
+                    <li class="list-group-item">Name: <%=photo.name%></li>
+                <li class="list-group-item">Author: <em><%=photo.author.username%></em></li>
+                <li class="list-group-item">Time: <em><%=photo.createAt%></em></li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <img src="<%= photo.image %>" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h1 class="card-title"><%= photo.name %></h1>
+                    <p class="card-text">
+                        <%= photo.description %>
+                    </p>
+                    <% if(currentUser && photo.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-sm btn-outline-warning" href="/gallery/<%=photo._id%>/edit">Edit</a>
+                    <form id="delete-form" action="/gallery/<%=photo._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-outline-danger"">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-body bg-light">
+                    <div class="text-right">
+                        <a href="/gallery/<%=photo._id%>/comments/new" class="btn btn-outline-info">Leave a Review</a>
+                    </div>
+                    <hr>
+                    <% photo.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%=comment.author.username%></strong>
+                            <span class="float-right"><em>Published in: <%=comment.createAt%></em></span>
+                            <p>
+                                <%=comment.text%>
+                            </p>
+                            <a href="/gallery/<%=photo._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-outline-warning">Edit</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

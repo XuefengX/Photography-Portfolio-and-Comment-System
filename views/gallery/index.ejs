@@ -1,0 +1,32 @@
+<%include ../partials/header%>
+
+<header class="jumbotron text-center">
+    <h1 class="display-4">Gallery</h1>
+    <p class="lead">Read photos and stories from the world</p>
+    <hr class="my-4">
+    <p>Create your own photo stories after registered</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/gallery/new" role="button">Write Your Story</a>
+    </p>
+</header>
+
+<div class="container">
+    <div class="row" style="display: flex; flex-wrap: warp;">
+        <% photos.forEach(function(photo){ %>
+        <div class="col-sm-6 col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="<%= photo.image %>">
+                <div class="card-body">
+                    <h3 class="card-title"><%= photo.name %></h3>
+                    <p class="card-text"><%= photo.name %> Photo</p>
+                    <a href="/gallery/<%= photo._id %>" class="btn btn-outline-secondary">More Info</a>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+</div>
+
+
+<%include ../partials/footer%>

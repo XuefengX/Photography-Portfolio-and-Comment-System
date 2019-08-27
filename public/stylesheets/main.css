@@ -1,0 +1,24 @@
+body{
+    padding-top: 3.5rem;
+}
+
+.show{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.foot{
+    background-color: #F5F5F5;
+    bottom: 0;
+    height: 5rem;
+    padding: 0.5rem;
+    margin-top: 5rem;
+}
+
+#delete-form{
+    display: inline;
+}
+
+#form{
+    padding-top: 5em;
+}
