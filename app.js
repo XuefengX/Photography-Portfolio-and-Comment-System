@@ -16,9 +16,16 @@ var commentRoutes    = require("./routes/comments"),
     galleryRoutes = require("./routes/photos"),
     indexRoutes      = require("./routes/index")
 
-const databaseUri = process.env.MONGODB_URI || 'mongodb://localhost/Read_Photos';
+const databaseUri = "mongodb+srv://Xuefeng:Sqh19470820@@photography-portfolio-nwdqs.mongodb.net/test?retryWrites=true&w=majority";
 
-mongoose.connect(databaseUri);
+mongoose.connect(databaseUri,{
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connect to DB.");
+}).catch(err => {
+    console.log("ERROR: ", err.message);
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
